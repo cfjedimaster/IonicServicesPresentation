@@ -1,0 +1,12 @@
+
+ionic add ionic-platform-web-client
+ionic io init
+
+ionic plugin add phonegap-plugin-push
+
+ionic config set dev_push true
+
+
+
+
+

@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Ionic Services</title>
+
+		<meta name="description" content="Presentation covering Ionic services.">
+		<meta name="author" content="Raymond Camden">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Ionic Services</h1>
+				</section>
+
+				<section>
+					<h1>Who am I?</h1>
+					<ul style="float:left;width:60%">
+						<li>Raymond Camden</li>
+						<li>Developer Advocate for IBM</li>
+						<li>Sign up for Bluemix here: ibm.biz/BluemixATX</li>
+						<li>Blogging at raymondcamden.com</li>
+						<li>Tweeting at @raymondcamden</li>
+					</ul>
+					<img src="img/ray.png">					
+				</section>
+
+				<section><img src="img/boys.jpg" class="stretch"></section>
+				<section><img src="img/thegirls.jpg" class="stretch"></section>
+				
+				<section>
+					<h1>Agenda</h1>
+					<ul>
+						<li class="fragment">What do Ionic Services require?</li>
+						<li class="fragment">Discuss each Ionic Service</li>
+					</ul>
+				</section>
+				
+				<section data-background="img/alphaflight.jpg">
+					<h1 style="color:black;background-color:white;">Alpha Warning</h1>
+				</section>
+				
+				<section>
+					<h1>Getting Started</h1>
+				</section>
+				
+				<section>
+					<h1>What You Need</h1>
+					<ul>
+						<li class="fragment">Latest version of the CLI</li>
+						<li class="fragment">Signup at apps.ionic.io (free)</li>
+					</ul>
+				</section>
+				
+				<section>
+					<p>
+						Ray, show them checking the version at the CLI and then the web site.
+					</p>
+				</section>
+				
+				<section>
+					<h1>Preparing an App</h1>
+					<ul>
+						<li class="fragment">Create your app (or pick an existing one)</li>
+						<li class="fragment">Add the platform web client: <code>ionic add ionic-platform-web-client</code></li>
+						<li class="fragment">Upload the application to the Ionic Platform: <code>ionic io init</code></li>
+						<li class="fragment">Aside: <code>ionic config build</code></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Demo</h1>
+					<!--
+						Show making a new app.
+						Show ionic upload
+						Show it at apps.ionic.io
+						Show app and settings.
+					-->
+				</section>
+				
+				<section data-background="img/i-fight-for-the-users.jpg" data-background-size="100%">
+					<!--<h1>Users</h1>-->
+				</section>
+				
+				<section>
+					<h1>Ionic Users</h1>
+					<ul>
+						<li class="fragment">"Support" service</li>
+						<li class="fragment">No authentication</li>
+						<li class="fragment">Helps you with Ids</li>
+						<li class="fragment">Just a data storage type system</li>
+				</section>
+				
+				<section>
+					<h1>Ionic Users</h1>
+					<pre><code data-trim contenteditable>
+Ionic.io();
+
+// this will give you a fresh user or the previously saved 'current user'
+var user = Ionic.User.current();
+
+// if the user doesn't have an id, you'll need to give it one.
+if (!user.id) {
+  user.id = Ionic.User.anonymousId();
+  // user.id = 'your-custom-user-id';
+}
+
+//persist the user
+user.save();						
+						
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Ionic Users</h1>
+					<pre><code data-trim contenteditable>
+var user = Ionic.User.current();
+
+user.set("name", "Conan");
+user.set("age", 42);
+
+//persist the user
+user.save();
+
+console.log(user.get("name"));						
+					</code></pre>
+				</section>	
+				
+							
+				<section data-background="img/push.jpg">
+					<h1>Push</h1>
+				</section>
+				
+				<section>
+					<h1>What is Push?</h1>
+					<ul>
+						<li class="fragment">Messages (text/data) from a server to your app</li>
+						<li class="fragment">Messages can be sent to specific groups</li>
+						<li class="fragment">Requires(*) external setup (Google/Apple)</li>
+						<li class="fragment">Only testable on real devices</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>What does Ionic give you?</h1>
+					<ul>
+						<li class="fragment">A library to register for and respond to push messages</li>
+						<li class="fragment">A console + CLI + REST API to send push messages</li>
+						<li class="fragment">The ability to ping a server on registration</li>
+						<li class="fragment">The ability for your app to know it opened up via notification and load a state (with params) on notification</li>
+					</ul>
+					<!-- Notes:
+						Ionic provides you the ability to know when your app was opened via a push notification. You can then handle that as you will. Or - you can also include both state and stateParams value in your message and Ionic will automatically set the state for you.
+						
+						Just a small detail, but if canRunActionsOnWake (Specified in the register() options) is false, the state redirect won’t happen
+						-->
+				</section>
+				
+				<section>
+					<img src="img/send-push-diagram.png" class="stretch">
+				</section>
+				
+				<section>
+					<h1>Requirements for Ionic Push</h1>
+					<ul>
+						<li class="fragment">The Stuff I Already Mentioned</li>
+						<li class="fragment">A Push plugin: <code>ionic plugin add phonegap-plugin-push</code></li>
+						<li class="fragment">External IDs/certs (optional, but required for production)</li>
+					</ul>
+				</section>
+								
+				<section>
+					<pre><code data-trim="true">
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+
+	Ionic.io();
+
+	var push = new Ionic.Push({});
+	
+	push.register(function(token) {
+		console.log("Got Token:",token.token);
+	});
+
+  });
+})
+					</code></pre>
+
+				</section>
+				
+				<!--
+				<section>
+					<pre><code data-trim="trim">
+$scope.pushRegister = function() {
+
+    // Register with the Ionic Push service.  All parameters are optional.
+    $ionicPush.register({
+      canShowAlert: true, //Can pushes show an alert on your screen?
+      canSetBadge: true, //Can pushes update app icon badges?
+      canPlaySound: true, //Can notifications play a sound?
+      canRunActionsOnWake: true, //Can run actions outside the app,
+      onNotification: function(notification) {
+        // Handle new push notifications here
+        // console.log(notification);
+        return true;
+      }
+    });
+  };						
+					</code></pre>
+				</section>
+				-->
+				
+				<section>
+					<h1>Demo</h1>
+					<!--
+						Show the code
+						Show in emulator, but don't run
+					-->	
+				</section>
+				
+				<section data-background="img/avi.jpg">
+					
+				</section>
+				
+				<section>
+					<h1>iOS/Android Stuff</h1>
+					<ul>
+						<li class="fragment">Do "stuff"</li>
+						<li class="fragment">On iOS:
+							<ul>
+								<li>You'll do the cert/prof/etc dance</li>
+								<li>You install the cert via cli: <code>ionic push --ios-dev-cert</code></li>
+							</ul>
+						</li>
+						<li class="fragment">On Android:
+							<ul>
+								<li>You'll do the simpler setup</li>
+								<li><code>ionic push --google-api-key your-google-api-key</code></li>
+								<li><code>ionic config set gcm_key your-gcm-project-number</code></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+							
+				<section>
+					<h1>Demo</h1>
+					<!--
+						push_real
+					-->
+				</section>			
+					
+				<!--
+					user and token
+					state
+				-->
+				
+				<section>
+					<h1>Web Hooks</h1>
+					<ul>
+						<li>"Ping my server on registration"</li>
+						<li><code>ionic push webhook_url http://example-server.com/example-api-endpoint</code></li>
+						<li>POST with JSON data in the body</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Push Message Options</h1>
+					<ul>
+						<li class="fragment">To specific users (instead of tokens)</li>
+						<li class="fragment">For a later time</li>
+						<li class="fragment">Push items like sound, badge, etc, aren't documented (yet)</li>
+					</ul>
+				</section>
+				
+				<section data-background="img/analytics.jpg">
+					<h1>Analytics</h1>
+					<p style="font-style:italic;align:bottom;position:absolute;left:0">
+						<a href="https://flic.kr/p/d9KiHk">Image Credit: Today's latte, Google Analytics.</a>
+					</p>
+				</section>
+
+				<section>
+					<h1>What is Analytics?</h1>
+					<ul>
+						<li class="fragment">Data about the type of users using your app</li>
+						<li class="fragment">Data about how users are using your app</li>
+						<li class="fragment">Data about specific paths (people who did X, Y, Z)</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>What does Ionic give you?</h1>
+					<ul>
+						<li class="fragment">A library to do this</li>
+						<li class="fragment">A way to automate collection</li>
+						<li class="fragment">A way to view reports</li>
+					</ul>
+				</section>
+				
+				
+				<section>
+					<h1>Requirements for Ionic Analytics</h1>
+					<ul>
+						<li class="fragment">A core Ionic Services library</li>
+						<li class="fragment">A Ionic Analytics library</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Requirements for Ionic Analytics (2)</h1>
+					<ul>
+						<li class="fragment">An identity call ("I'm so and so App!")</li>
+						<li class="fragment">A register call</li>
+						<li class="fragment">A user register call (optional)</li>
+						<li class="fragment">Call an API</li>
+					</ul>
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+ionic upload
+ionic add ionic-service-core
+ionic add ionic-service-analytics					
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+&lt;script src="lib/ionic/js/ionic.bundle.js">&lt;/script>
+&lt;script src="lib/ionic-service-core/ionic-core.js">&lt;/script>
+&lt;script src="lib/ionic-service-push/ionic-analytics.js">&lt;/script>						
+					</code></pre>
+				</section>				
+
+				<section>
+					<pre><code data-trim="true">
+.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // The App ID (from apps.ionic.io) for the server
+    app_id: 'YOUR_APP_ID',
+    // The public API key all services will use for this app
+    api_key: 'YOUR_PUBLIC_API_KEY'
+  });
+}])						
+					</code></pre>
+
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+			$ionicAnalytics.register();
+					</code></pre>
+				</section>
+				
+				<section>
+					<pre><code data-trim="true">
+						$ionicAnalytics.track(name, data);
+					</code></pre>
+				</section>
+				
+				<section>
+					<h1>Demo</h1>
+				</section>
+
+				<section data-background="img/hover-cats1.jpg">
+					<h1 style="text-shadow: 2px 2px #000000">Deploy</h1>
+				</section>
+
+				<section>
+					<h1>What is Deploy?</h1>
+					<ul>
+						<li class="fragment">Ability to update your application...</li>
+						<li class="fragment">without doing an app store release!</li>
+						<li class="fragment">Abilty to undo that update</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>What does Ionic give you?</h1>
+					<ul>
+						<li class="fragment">A library to do this in your app</li>
+						<li class="fragment">A way to deploy new versions (and roll back)</li>
+						<li class="fragment">A way to deploy new versions to select channels</li>
+						<li class="fragment">A way to view deployment history</li>
+					</ul>
+				</section>
+				
+				
+				<section>
+					<h1>Requirements for Ionic Deploy (1)</h1>
+					<ul>
+						<li class="fragment">A core Ionic Services library</li>
+						<li class="fragment">A Ionic Deploy library</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Requirements for Ionic Deploy (2)</h1>
+					<ul>
+						<li class="fragment">An identity call ("I'm so and so App!")</li>
+						<li class="fragment">A register call</li>
+						<li class="fragment">A check for updates</li>
+						<li class="fragment">A call to update (includes progress, error, and success handlers)</li>
+					</ul>
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+ionic upload
+ionic add ionic-service-core
+ionic add ionic-service-deploy					
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+&lt;script src="lib/ionic/js/ionic.bundle.js">&lt;/script>
+&lt;script src="lib/ionic-service-core/ionic-core.js">&lt;/script>
+&lt;script src="lib/ionic-service-push/ionic-deploy.js">&lt;/script>						
+					</code></pre>
+				</section>				
+
+				<section>
+					<pre><code data-trim="true">
+&lt;!--
+&lt;script src="cordova.js">&lt;/script>
+--&gt;
+					</code></pre>
+				</section>				
+
+				<section>
+					<pre><code data-trim="true">
+.config(['$ionicAppProvider', function($ionicAppProvider) {
+  // Identify app
+  $ionicAppProvider.identify({
+    // The App ID (from apps.ionic.io) for the server
+    app_id: 'YOUR_APP_ID',
+    // The public API key all services will use for this app
+    api_key: 'YOUR_PUBLIC_API_KEY'
+  });
+}])						
+					</code></pre>
+
+				</section>
+
+				<section>
+					<pre><code data-trim="true">
+$ionicDeploy.check().then(function(hasUpdate) {
+	// do the update, or maybe ask the user first
+}, function(err) {
+	// handle the error, don't ignore it like i did
+});
+					</code></pre>
+				</section>
+				
+				<section>
+					<pre><code data-trim="true">
+$ionicDeploy.update().then(function(res) {
+	console.log('Ionic Deploy: Update Success! ', res);
+}, function(err) {
+	console.log('Ionic Deploy: Update error! ', err);
+}, function(prog) {
+	console.log('Ionic Deploy: Progress... ', prog);
+});
+					</code></pre>
+				</section>
+				
+				<section>
+					<h1>Doing Updates...</h1>
+					<pre><code data-trim="true">
+						 ionic upload --note "Added blue header"
+					</code></pre>
+					<p>
+						Then deploy from the site.
+					</p>
+				</section>
+				
+				<section>
+					<h1>Demo</h1>
+				</section>	
+				
+				<section>
+					<h1>Wrap Up</h1>	
+				</section>
+				
+				<section>
+					<ul>
+						<li class="fragment">Remember everything I showed you will be different tomorrow</li>
+						<li class="fragment">User system</li>
+						<li class="fragment">REST API</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Questions?</h1>
+				</section>
+											
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
