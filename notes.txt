@@ -3,8 +3,11 @@ ionic add ionic-platform-web-client
 ionic io init
 
 ionic plugin add phonegap-plugin-push
+ionic plugin add ionic-plugin-deploy
 
 ionic config set dev_push true
+
+ionic emulate ios --target="iPhone-6, 8.4"
 
 
 

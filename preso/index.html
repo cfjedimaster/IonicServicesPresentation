@@ -40,8 +40,8 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>Ionic Services</h1>
+				<section data-background="img/kittendeer.jpg">
+					<h1 style="background-color: black">Ionic Services</h1>
 				</section>
 
 				<section>
@@ -58,6 +58,12 @@
 
 				<section><img src="img/boys.jpg" class="stretch"></section>
 				<section><img src="img/thegirls.jpg" class="stretch"></section>
+				
+				<section>
+					<h1>Thanks!</h1>
+					<img src="img/ericbobbitt.jpg"><br/>
+					@ericbobbitt
+				</section>
 				
 				<section>
 					<h1>Agenda</h1>
@@ -219,28 +225,6 @@ console.log(user.get("name"));
 
 				</section>
 				
-				<!--
-				<section>
-					<pre><code data-trim="trim">
-$scope.pushRegister = function() {
-
-    // Register with the Ionic Push service.  All parameters are optional.
-    $ionicPush.register({
-      canShowAlert: true, //Can pushes show an alert on your screen?
-      canSetBadge: true, //Can pushes update app icon badges?
-      canPlaySound: true, //Can notifications play a sound?
-      canRunActionsOnWake: true, //Can run actions outside the app,
-      onNotification: function(notification) {
-        // Handle new push notifications here
-        // console.log(notification);
-        return true;
-      }
-    });
-  };						
-					</code></pre>
-				</section>
-				-->
-				
 				<section>
 					<h1>Demo</h1>
 					<!--
@@ -311,7 +295,7 @@ $scope.pushRegister = function() {
 				</section>
 
 				<section>
-					<h1>What is Analytics?</h1>
+					<h1>What are Analytics?</h1>
 					<ul>
 						<li class="fragment">Data about the type of users using your app</li>
 						<li class="fragment">Data about how users are using your app</li>
@@ -332,59 +316,30 @@ $scope.pushRegister = function() {
 				<section>
 					<h1>Requirements for Ionic Analytics</h1>
 					<ul>
-						<li class="fragment">A core Ionic Services library</li>
-						<li class="fragment">A Ionic Analytics library</li>
+						<li class="fragment">The Stuff I Already Mentioned</li>
+						<li class="fragment">Slight modification to code</li>
+						<li class="fragment">A "register" call</li>
 					</ul>
 				</section>
 
 				<section>
-					<h1>Requirements for Ionic Analytics (2)</h1>
-					<ul>
-						<li class="fragment">An identity call ("I'm so and so App!")</li>
-						<li class="fragment">A register call</li>
-						<li class="fragment">A user register call (optional)</li>
-						<li class="fragment">Call an API</li>
-					</ul>
-				</section>
-
-				<section>
-					<pre><code data-trim="true">
-ionic upload
-ionic add ionic-service-core
-ionic add ionic-service-analytics					
-					</code></pre>
-				</section>
-
-				<section>
-					<pre><code data-trim="true">
-&lt;script src="lib/ionic/js/ionic.bundle.js">&lt;/script>
-&lt;script src="lib/ionic-service-core/ionic-core.js">&lt;/script>
-&lt;script src="lib/ionic-service-push/ionic-analytics.js">&lt;/script>						
-					</code></pre>
-				</section>				
-
-				<section>
-					<pre><code data-trim="true">
-.config(['$ionicAppProvider', function($ionicAppProvider) {
-  // Identify app
-  $ionicAppProvider.identify({
-    // The App ID (from apps.ionic.io) for the server
-    app_id: 'YOUR_APP_ID',
-    // The public API key all services will use for this app
-    api_key: 'YOUR_PUBLIC_API_KEY'
-  });
-}])						
-					</code></pre>
-
-				</section>
-
-				<section>
-					<pre><code data-trim="true">
-			$ionicAnalytics.register();
-					</code></pre>
+					<h1>Demo</h1>
+					<p>
+						Ray, show analytics1
+					</p>
 				</section>
 				
 				<section>
+					<h1>What's tracked?</h1>
+					<ul>
+						<li>load</li>
+						<li>state change</li>
+						<li>tap</li>
+					</ul>
+				</section>
+								
+				<section>
+					<h1>Custom Tracking</h1>
 					<pre><code data-trim="true">
 						$ionicAnalytics.track(name, data);
 					</code></pre>
@@ -392,6 +347,24 @@ ionic add ionic-service-analytics
 				
 				<section>
 					<h1>Demo</h1>
+					<p>
+						Ray, show analytics2
+					</p>
+				</section>
+				
+				<section>
+					<h1>More Analytic Stuff</h1>
+					<ul>
+						<li>Global properties feature</li>
+						<li>Customize how often data is sent</li>
+						<li>ion-track directive</li>
+					</ul>
+					<pre><code data-trim="trim">
+&lt;button class="button button-positive"
+  ion-track-tap="Tap Face"
+  ion-track-data="scopeData"&gt;Tap Here&lt;/button&gt;
+  					</code></pre>
+
 				</section>
 
 				<section data-background="img/hover-cats1.jpg">
@@ -417,94 +390,88 @@ ionic add ionic-service-analytics
 					</ul>
 				</section>
 				
+				<section>
+					<h1>What is supported?</h1>
+					<p>
+						"small text updates or other non-binary updates"
+					</p>
+				</section>
+
+				<section>
+					<h1>What is supported?</h1>
+					<ul>
+						<li>Text (html, JS, css)</li>
+						<li>Graphics (images, sound files)</li>
+						<li>Basically everything under www</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>What is not supported?</h1>
+					<ul>
+						<li>Anything outside of www</li>
+						<li>Plugins</li>
+					</ul>
+				</section>
 				
 				<section>
-					<h1>Requirements for Ionic Deploy (1)</h1>
+					<h1>Requirements for Ionic Deploy</h1>
 					<ul>
-						<li class="fragment">A core Ionic Services library</li>
-						<li class="fragment">A Ionic Deploy library</li>
+						<li class="fragment">The Stuff I Already Mentioned</li>
+						<li class="fragment">A plugin (ionic-plugin-deploy)</li>
+						<li class="fragment">Code to check for an update and/of do the update</li>
 					</ul>
 				</section>
 
-				<section>
-					<h1>Requirements for Ionic Deploy (2)</h1>
-					<ul>
-						<li class="fragment">An identity call ("I'm so and so App!")</li>
-						<li class="fragment">A register call</li>
-						<li class="fragment">A check for updates</li>
-						<li class="fragment">A call to update (includes progress, error, and success handlers)</li>
-					</ul>
-				</section>
 
 				<section>
 					<pre><code data-trim="true">
-ionic upload
-ionic add ionic-service-core
-ionic add ionic-service-deploy					
-					</code></pre>
-				</section>
+var deploy = new Ionic.Deploy();
 
-				<section>
-					<pre><code data-trim="true">
-&lt;script src="lib/ionic/js/ionic.bundle.js">&lt;/script>
-&lt;script src="lib/ionic-service-core/ionic-core.js">&lt;/script>
-&lt;script src="lib/ionic-service-push/ionic-deploy.js">&lt;/script>						
-					</code></pre>
-				</section>				
-
-				<section>
-					<pre><code data-trim="true">
-&lt;!--
-&lt;script src="cordova.js">&lt;/script>
---&gt;
-					</code></pre>
-				</section>				
-
-				<section>
-					<pre><code data-trim="true">
-.config(['$ionicAppProvider', function($ionicAppProvider) {
-  // Identify app
-  $ionicAppProvider.identify({
-    // The App ID (from apps.ionic.io) for the server
-    app_id: 'YOUR_APP_ID',
-    // The public API key all services will use for this app
-    api_key: 'YOUR_PUBLIC_API_KEY'
+// Check Ionic Deploy for new code
+$scope.checkForUpdates = function() {
+  console.log('Ionic Deploy: Checking for updates');
+  deploy.check().then(function(hasUpdate) {     
+    console.log('Ionic Deploy: Update available: ' + hasUpdate);
+    $scope.hasUpdate = hasUpdate;  
+  }, function(err) {
+    console.error('Ionic Deploy: Unable to check for updates', err);
   });
-}])						
+}						
+  				</code></pre>
+			</section>
+
+				<section>
+					<pre><code data-trim="true">
+// Update app code with new release from Ionic Deploy
+$scope.doUpdate = function() {
+  deploy.update().then(function(res) {
+    console.log('Ionic Deploy: Update Success! ', res);
+  }, function(err) {
+    console.log('Ionic Deploy: Update error! ', err);
+  }, function(prog) {
+    console.log('Ionic Deploy: Progress... ', prog);
+  });
+};
 					</code></pre>
 
 				</section>
 
 				<section>
+					<h1>Doing Updates (V1)</h1>
 					<pre><code data-trim="true">
-$ionicDeploy.check().then(function(hasUpdate) {
-	// do the update, or maybe ask the user first
-}, function(err) {
-	// handle the error, don't ignore it like i did
-});
-					</code></pre>
-				</section>
-				
-				<section>
-					<pre><code data-trim="true">
-$ionicDeploy.update().then(function(res) {
-	console.log('Ionic Deploy: Update Success! ', res);
-}, function(err) {
-	console.log('Ionic Deploy: Update error! ', err);
-}, function(prog) {
-	console.log('Ionic Deploy: Progress... ', prog);
-});
-					</code></pre>
-				</section>
-				
-				<section>
-					<h1>Doing Updates...</h1>
-					<pre><code data-trim="true">
-						 ionic upload --note "Added blue header"
+ionic upload --note "purple bar"
 					</code></pre>
 					<p>
 						Then deploy from the site.
 					</p>
+				</section>
+				
+				<section>
+					<h1>Doing Updates (V2)</h1>
+					<pre><code data-trim="true">
+ionic upload --note "purple bar" --deploy=production
+					</code></pre>
 				</section>
 				
 				<section>
