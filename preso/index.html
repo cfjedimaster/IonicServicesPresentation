@@ -179,7 +179,7 @@ console.log(user.get("name"));
 					<h1>What is Push?</h1>
 					<ul>
 						<li class="fragment">Messages (text/data) from a server to your app</li>
-						<li class="fragment">Messages can be sent to specific groups</li>
+						<li class="fragment">Messages can be sent to specific users</li>
 						<li class="fragment">Requires(*) external setup (Google/Apple)</li>
 						<li class="fragment">Only testable on real devices</li>
 					</ul>
@@ -190,7 +190,7 @@ console.log(user.get("name"));
 					<ul>
 						<li class="fragment">A library to register for and respond to push messages</li>
 						<li class="fragment">A console + CLI + REST API to send push messages</li>
-						<li class="fragment">The ability to ping a server on registration</li>
+						<li class="fragment">The ability to ping a server on registration/unsub</li>
 						<li class="fragment">The ability for your app to know it opened up via notification and load a state (with params) on notification</li>
 					</ul>
 					<!-- Notes:
@@ -282,6 +282,7 @@ console.log(user.get("name"));
 						<li>"Ping my server on registration"</li>
 						<li><code>ionic push webhook_url http://example-server.com/example-api-endpoint</code></li>
 						<li>POST with JSON data in the body</li>
+						<li>Article: <a href="http://www.raymondcamden.com/2015/10/07/testing-ionic-push-webhooks-with-ibm-bluemix" target="_new">http://www.raymondcamden.com/2015/10/07/testing-ionic-push-webhooks-with-ibm-bluemix</a>
 					</ul>
 				</section>
 				
@@ -290,13 +291,13 @@ console.log(user.get("name"));
 					<ul>
 						<li class="fragment">To specific users (instead of tokens)</li>
 						<li class="fragment">For a later time</li>
-						<li class="fragment">Push items like sound, badge, etc, aren't documented (yet)</li>
+						<li class="fragment">Push items like sound, badge, etc, are documented on the Push plugin: https://github.com/phonegap/phonegap-plugin-push</li>
 					</ul>
 				</section>
 				
 				<section data-background="img/analytics.jpg">
 					<h1>Analytics</h1>
-					<p style="font-style:italic;align:bottom;position:absolute;left:0">
+					<p style="font-style:italic;align:bottom;position:absolute;left:0;top:400px;">
 						<a href="https://flic.kr/p/d9KiHk">Image Credit: Today's latte, Google Analytics.</a>
 					</p>
 				</section>
@@ -485,6 +486,28 @@ ionic upload --note "purple bar" --deploy=production
 					<h1>Demo</h1>
 				</section>	
 				
+				<section data-background="img/raiders_warehouse.jpg">
+					<h1 style="text-shadow: 2px 2px #000000">Package</h1>
+				</section>
+				
+				<section>
+					<h1>Service Based Compilation</h1>
+					<ul>
+						<li class="fragment">Think PhoneGap Build without Adobe</li>
+						<li class="fragment">100% CLI based</li>
+						<li class="fragment">Alpha Alpha</li>
+						<li class="fragment">New Feature: Security Profiles</li>
+					</ul>	
+				</section>
+				
+				<section>
+					<h1>Demo</h1>
+				</section>	
+				
+				<!--
+					http://docs.ionic.io/docs/package-overview
+				-->
+				
 				<section>
 					<h1>Wrap Up</h1>	
 				</section>
@@ -499,6 +522,10 @@ ionic upload --note "purple bar" --deploy=production
 				
 				<section>
 					<h1>Questions?</h1>
+					<img src="img/skele.jpg">
+					<p style="align:right">
+						Credit: <a href="https://www.flickr.com/photos/mlleghoul/14782326131/">Flickr: S. Elizabeth</a>
+					</p>
 				</section>
 											
 			</div>
