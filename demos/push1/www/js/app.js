@@ -25,8 +25,6 @@ angular.module('starter', ['ionic'])
 		push.register(function(token) {
 			console.log("Got Token:",token.token);
 		});
-
-		
 		
   });
 })
